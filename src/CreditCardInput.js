@@ -148,11 +148,6 @@ export default class CreditCardInput extends Component {
       allowScroll, requiresName, requiresCVC, requiresPostalCode,
       cardScale, cardFontFamily, cardBrandIcons,
     } = this.props;
-
-    const numberRef = useRef();
-    const expiryRef = useRef();
-    const cvcRef = useRef();
-
     return (
       <View style={s.container}>
         <CreditCard focused={focused}
