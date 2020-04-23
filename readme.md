@@ -36,7 +36,7 @@ npm i --save react-native-credit-card-input
 then add these lines in your react-native codebase
 
 ```js
-import { CreditCardInput, LiteCreditCardInput } from "react-native-credit-card-input";
+import { CreditCardInput, LiteCreditCardInput } from "react-native-credit-card-br";
 
 <CreditCardInput onChange={this._onChange} />
 // or
