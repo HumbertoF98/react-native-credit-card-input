@@ -176,7 +176,7 @@ export default class CreditCardInput extends Component {
             keyboardType="numeric"
             maxLength={16}
             containerStyle={[s.inputContainer, inputContainerStyle, { width: CARD_NUMBER_INPUT_WIDTH }]} />
-          <View style={{ flexDirection: row }}>
+          <View style={{ flexDirection: 'row' }}>
             <CCInput {...this._inputProps("expiry")}
               returnKeyType="next"
               keyboardType="numeric"
