@@ -30,7 +30,7 @@ Code:
 # Usage
 
 ```bash
-npm i --save react-native-credit-card-input
+npm i --save react-native-credit-card-br
 ```
 
 then add these lines in your react-native codebase
