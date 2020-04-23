@@ -169,16 +169,14 @@ export default class CreditCardInput extends Component {
           style={s.form}>
           {requiresName &&
             <CCInput {...this._inputProps("name")}
-              returnKeyType="next"
+              maxLength={100}
               containerStyle={[s.inputContainer, inputContainerStyle, { width: NAME_INPUT_WIDTH }]} />}
           <CCInput {...this._inputProps("number")}
-            returnKeyType="next"
-            keyboardType="numeric"
             maxLength={16}
+            keyboardType="numeric"
             containerStyle={[s.inputContainer, inputContainerStyle, { width: CARD_NUMBER_INPUT_WIDTH }]} />
           <View style={{ flexDirection: 'row' }}>
             <CCInput {...this._inputProps("expiry")}
-              returnKeyType="next"
               keyboardType="numeric"
               containerStyle={[s.inputContainer, inputContainerStyle, { width: EXPIRY_INPUT_WIDTH }]} />
             {requiresCVC &&
