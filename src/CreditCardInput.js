@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, useRef } from "react";
 import PropTypes from "prop-types";
 import ReactNative, {
   NativeModules,
@@ -24,6 +24,7 @@ const s = StyleSheet.create({
   },
   inputContainer: {
     marginLeft: 20,
+    marginTop: 10
   },
   inputLabel: {
     fontWeight: "bold",
@@ -43,6 +44,7 @@ const POSTAL_CODE_INPUT_WIDTH = 120;
 
 /* eslint react/prop-types: 0 */ // https://github.com/yannickcr/eslint-plugin-react/issues/106
 export default class CreditCardInput extends Component {
+
   static propTypes = {
     ...InjectedProps,
     labels: PropTypes.object,
@@ -147,6 +149,10 @@ export default class CreditCardInput extends Component {
       cardScale, cardFontFamily, cardBrandIcons,
     } = this.props;
 
+    const numberRef = useRef();
+    const expiryRef = useRef();
+    const cvcRef = useRef();
+
     return (
       <View style={s.container}>
         <CreditCard focused={focused}
@@ -166,20 +172,28 @@ export default class CreditCardInput extends Component {
           keyboardShouldPersistTaps="always"
           scrollEnabled={allowScroll}
           style={s.form}>
+          {requiresName &&
+            <CCInput {...this._inputProps("name")}
+              onSubmitEditing={() => numberRef.current.focus()}
+              containerStyle={[s.inputContainer, inputContainerStyle, { width: NAME_INPUT_WIDTH }]} />}
           <CCInput {...this._inputProps("number")}
+            ref={numberRef}
+            onSubmitEditing={() => expiryRef.current.focus()}
             keyboardType="numeric"
             maxLength={16}
             containerStyle={[s.inputContainer, inputContainerStyle, { width: CARD_NUMBER_INPUT_WIDTH }]} />
-          <CCInput {...this._inputProps("expiry")}
-            keyboardType="numeric"
-            containerStyle={[s.inputContainer, inputContainerStyle, { width: EXPIRY_INPUT_WIDTH }]} />
-          {requiresCVC &&
-            <CCInput {...this._inputProps("cvc")}
+          <View style={{ flexDirection: row }}>
+            <CCInput {...this._inputProps("expiry")}
+              ref={expiryRef}
+              onSubmitEditing={() => cvcRef.current.focus()}
               keyboardType="numeric"
-              containerStyle={[s.inputContainer, inputContainerStyle, { width: CVC_INPUT_WIDTH }]} />}
-          {requiresName &&
-            <CCInput {...this._inputProps("name")}
-              containerStyle={[s.inputContainer, inputContainerStyle, { width: NAME_INPUT_WIDTH }]} />}
+              containerStyle={[s.inputContainer, inputContainerStyle, { width: EXPIRY_INPUT_WIDTH }]} />
+            {requiresCVC &&
+              <CCInput {...this._inputProps("cvc")}
+                ref={cvcRef}
+                keyboardType="numeric"
+                containerStyle={[s.inputContainer, inputContainerStyle, { width: CVC_INPUT_WIDTH }]} />}
+          </View>
           {requiresPostalCode &&
             <CCInput {...this._inputProps("postalCode")}
               keyboardType="numeric"
