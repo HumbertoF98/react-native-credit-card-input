@@ -1,4 +1,4 @@
-import React, { Component, useRef } from "react";
+import React, { Component } from "react";
 import PropTypes from "prop-types";
 import ReactNative, {
   NativeModules,
@@ -174,23 +174,20 @@ export default class CreditCardInput extends Component {
           style={s.form}>
           {requiresName &&
             <CCInput {...this._inputProps("name")}
-              onSubmitEditing={() => numberRef.current.focus()}
+              returnKeyType="next"
               containerStyle={[s.inputContainer, inputContainerStyle, { width: NAME_INPUT_WIDTH }]} />}
           <CCInput {...this._inputProps("number")}
-            ref={numberRef}
-            onSubmitEditing={() => expiryRef.current.focus()}
+            returnKeyType="next"
             keyboardType="numeric"
             maxLength={16}
             containerStyle={[s.inputContainer, inputContainerStyle, { width: CARD_NUMBER_INPUT_WIDTH }]} />
           <View style={{ flexDirection: row }}>
             <CCInput {...this._inputProps("expiry")}
-              ref={expiryRef}
-              onSubmitEditing={() => cvcRef.current.focus()}
+              returnKeyType="next"
               keyboardType="numeric"
               containerStyle={[s.inputContainer, inputContainerStyle, { width: EXPIRY_INPUT_WIDTH }]} />
             {requiresCVC &&
               <CCInput {...this._inputProps("cvc")}
-                ref={cvcRef}
                 keyboardType="numeric"
                 containerStyle={[s.inputContainer, inputContainerStyle, { width: CVC_INPUT_WIDTH }]} />}
           </View>
