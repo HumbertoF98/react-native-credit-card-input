@@ -74,7 +74,7 @@ export default class CreditCardInput extends Component {
     labels: {
       name: "NOME",
       number: "NÚMERO CARTÃO",
-      expiry: "VALIDADE",
+      expiry: "VAL",
       cvc: "CVV",
       postalCode: "CEP",
     },
@@ -175,7 +175,7 @@ export default class CreditCardInput extends Component {
             maxLength={19}
             keyboardType="numeric"
             containerStyle={[s.inputContainer, inputContainerStyle, { width: CARD_NUMBER_INPUT_WIDTH }]} />
-          <View style={{ flexDirection: 'row' }}>
+          <View style={{ flexDirection: 'row', width: '100%' }}>
             <CCInput {...this._inputProps("expiry")}
               maxLength={5}
               keyboardType="numeric"

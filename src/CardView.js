@@ -98,7 +98,7 @@ export default class CardView extends Component {
     name: "",
     placeholder: {
       number: "•••• •••• •••• ••••",
-      name: "FULL NAME",
+      name: "NOME COMPLETO",
       expiry: "••/••",
       cvc: "•••",
     },
@@ -137,8 +137,6 @@ export default class CardView extends Component {
           flip={shouldFlip}>
           <ImageBackground style={[BASE_SIZE, s.cardFace, transform]}
             source={imageFront}>
-            <Image style={[s.icon]}
-              source={Icons[brand]} />
             <Text style={[s.baseText, { fontFamily }, s.number, !number && s.placeholder, focused === "number" && s.focused]}>
               {!number ? placeholder.number : number}
             </Text>
